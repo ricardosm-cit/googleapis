@@ -156,6 +156,32 @@ interfaces:
     retry_codes_name: idempotent
     retry_params_name: default
     timeout_millis: 60000
+    samples:
+      standalone:
+      - region_tag: data_catalog_lookup_entry
+        value_sets: [data_catalog_lookup_entry]
+    sample_value_sets:
+    - id: data_catalog_lookup_entry
+      description: Lookup Entry
+      parameters:
+        defaults:
+        - linked_resource = "[Full Resource Name]"
+        attributes:
+        - parameter: linked_resource
+          sample_argument_name: resource_name
+          description: |
+            The full name of the Google Cloud Platform resource the Data Catalog entry represents.
+            See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+            Examples:
+              //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId
+              //pubsub.googleapis.com/projects/projectId/topics/topicId
+      on_success:
+      - define: entry = $resp
+      - print: ["Entry name: %s", entry.name]
+      - print: ["Entry type: %s", entry.type]
+      - print: ["Linked Resource name: %s", entry.linked_resource]
+      - print: ["Display name: %s", entry.display_name]
+      - print: ["Description: %s", entry.description]
   - name: CreateTagTemplate
     flattening:
       groups:
