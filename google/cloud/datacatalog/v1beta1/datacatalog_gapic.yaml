@@ -181,9 +181,7 @@ interfaces:
       - define: entry = $resp
       - print: ["Entry name: %s", entry.name]
       - print: ["Entry type: %s", entry.type]
-      - print: ["Linked Resource name: %s", entry.linked_resource]
-      - print: ["Display name: %s", entry.display_name]
-      - print: ["Description: %s", entry.description]
+      - print: ["Linked resource: %s", entry.linked_resource]
     - id: data_catalog_lookup_entry_sql_resource
       description: Lookup Entry using SQL resource
       parameters:
@@ -201,9 +199,7 @@ interfaces:
       - define: entry = $resp
       - print: ["Entry name: %s", entry.name]
       - print: ["Entry type: %s", entry.type]
-      - print: ["Linked Resource name: %s", entry.linked_resource]
-      - print: ["Display name: %s", entry.display_name]
-      - print: ["Description: %s", entry.description]
+      - print: ["Linked resource: %s", entry.linked_resource]
   - name: CreateTagTemplate
     flattening:
       groups:
