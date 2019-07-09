@@ -1,19 +1,4 @@
 test:
-  helpers:
-    # Regex Extractions from STDOUT
-    regex_helpers:
-      project: &get_project_from_output
-        variable: project
-        pattern: projects/([\w-]+)
-      location: &get_location_from_output
-        variable: location
-        pattern: locations/([\w-]+)
-      entry_group_id: &get_entry_group_id_from_output
-        variable: entry_group_id
-        pattern: entryGroups/@([\w-]+)
-      entry_id: &get_entry_id_from_output
-        variable: entry_id
-        pattern: entries/([\w-]+)
   suites:
   - name: Data Catalog v1beta1 Get Entry sample tests
     setup:
@@ -22,10 +7,18 @@ test:
         params:
           resource_name:
             literal: //bigquery.googleapis.com/projects/bigquery-public-data/datasets/new_york_taxi_trips/tables/taxi_zone_geom
-    - extract_match: *get_project_from_output
-    - extract_match: *get_location_from_output
-    - extract_match: *get_entry_group_id_from_output
-    - extract_match: *get_entry_id_from_output
+    - extract_match:
+        pattern: projects/([\w-]+)
+        variable: project
+    - extract_match:
+        pattern: locations/([\w-]+)
+        variable: location
+    - extract_match:
+        pattern: entryGroups/@([\w-]+)
+        variable: entry_group_id
+    - extract_match:
+        pattern: entries/([\w-]+)
+        variable: entry_id
     cases:
     - name: Get Entry for a public BigQuery Table
       spec:
