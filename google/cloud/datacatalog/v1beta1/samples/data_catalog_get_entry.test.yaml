@@ -9,10 +9,10 @@ test:
             literal: //bigquery.googleapis.com/projects/bigquery-public-data/datasets/new_york_taxi_trips/tables/taxi_zone_geom
     - extract_match:
         pattern: projects/([\w-]+)
-        variable: project
+        variable: project_id
     - extract_match:
         pattern: locations/([\w-]+)
-        variable: location
+        variable: location_id
     - extract_match:
         pattern: entryGroups/@([\w-]+)
         variable: entry_group_id
@@ -25,10 +25,10 @@ test:
       - call:
           sample: data_catalog_get_entry
           params:
-            project:
-              variable: project
-            location:
-              variable: location
+            project_id:
+              variable: project_id
+            location_id:
+              variable: location_id
             entry_group_id:
               variable: entry_group_id
             entry_id:
