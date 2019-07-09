@@ -1,0 +1,36 @@
+test:
+  suites:
+  - name: Data Catalog v1beta1 Get Entry sample tests
+    setup:
+    - code: |
+        import re
+        from google.cloud import datacatalog_v1beta1
+
+        datacatalog_client = datacatalog_v1beta1.DataCatalogClient()
+
+        linked_resource='//bigquery.googleapis.com/projects/bigquery-public-data/datasets/new_york_taxi_trips/tables/taxi_zone_geom'
+        entry = datacatalog_client.lookup_entry(linked_resource=linked_resource)
+
+        name_matchers = re.search('projects/(.+?)/locations/(.+?)/entryGroups/@(.+?)/entries/(.+?)$', entry.name)
+        project = name_matchers.group(1)
+        location = name_matchers.group(2)
+        entry_group = name_matchers.group(3)
+        entry_id = name_matchers.group(4)
+    cases:
+    - name: Get Entry for a public BigQuery Table
+      spec:
+      - call:
+          sample: data_catalog_get_entry
+          params:
+            project:
+              variable: project
+            location:
+              variable: location
+            entry_group:
+              variable: entry_group
+            entry_id:
+              variable: entry_id
+      - assert_contains:
+        - literal: "Entry name: projects/bigquery-public-data"
+        - literal: "Entry type: TABLE"
+        - literal: "Linked resource: //bigquery.googleapis.com/projects/bigquery-public-data/datasets/new_york_taxi_trips/tables/taxi_zone_geom"
