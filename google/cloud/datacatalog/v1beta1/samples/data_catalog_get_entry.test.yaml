@@ -14,7 +14,7 @@ test:
         pattern: locations/([\w-]+)
         variable: location_id
     - extract_match:
-        pattern: entryGroups/@([\w-]+)
+        pattern: entryGroups/(@[\w-]+)
         variable: entry_group_id
     - extract_match:
         pattern: entries/([\w-]+)
