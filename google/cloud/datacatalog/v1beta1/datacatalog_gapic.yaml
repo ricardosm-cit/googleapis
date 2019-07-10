@@ -354,6 +354,33 @@ interfaces:
     field_name_patterns:
       resource: tag_template
     timeout_millis: 60000
+    samples:
+      standalone:
+      - region_tag: data_catalog_get_iam_policy
+        value_sets: [data_catalog_get_iam_policy]
+    sample_value_sets:
+    - id: data_catalog_get_iam_policy
+      description: Get IAM Policy
+      parameters:
+        defaults:
+        # The tag template "name" is of the format: "projects/{project_id}/locations/{location_id}/tagTemplates/{tag_template_id}"
+        # Each part of the name can be separated out into its own parameter using `name%[part name]`
+        - resource%project = "[Google Cloud Project ID]"
+        - resource%location = "[Google Cloud Location ID]"
+        - resource%tag_template = "[Tag Template ID]"
+        attributes:
+        - parameter: resource%project
+          description: "Your Google Cloud project ID"
+          sample_argument_name: project_id
+        - parameter: resource%location
+          description: "Google Cloud region, e.g. us-central1"
+          sample_argument_name: location_id
+        - parameter: resource%tag_template
+          description: "ID of the Tag Template"
+          sample_argument_name: tag_template_id
+      on_success:
+      - define: policy = $resp
+      - print: ["Current bindings: %s", policy.bindings]
   - name: TestIamPermissions
     flattening:
       groups:
