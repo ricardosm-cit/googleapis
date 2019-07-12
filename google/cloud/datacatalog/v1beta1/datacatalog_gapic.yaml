@@ -172,6 +172,42 @@ interfaces:
     field_name_patterns:
       parent: location
     timeout_millis: 60000
+    samples:
+      standalone:
+      - value_sets: [data_catalog_create_tag_template]
+        region_tag: data_catalog_create_tag_template
+    sample_value_sets:
+    - id: data_catalog_create_tag_template
+      description: Create Tag Template
+      parameters:
+        defaults:
+        - parent%project = "[Google Cloud Project ID]"
+        - parent%location = "[Google Cloud Location ID]"
+        - tag_template_id = sample_tag_template
+        - tag_template.display_name = "Sample Tag Template"
+        - tag_template.fields{"source"}.display_name = "Source of data asset"
+        - tag_template.fields{"source"}.type.primitive_type = STRING
+        - tag_template.fields{"num_rows"}.display_name = "Number of rows in data asset"
+        - tag_template.fields{"num_rows"}.type.primitive_type = DOUBLE
+        - tag_template.fields{"has_pii"}.display_name = "Has PII"
+        - tag_template.fields{"has_pii"}.type.primitive_type = BOOL
+        - tag_template.fields{"pii_type"}.display_name = "PII type"
+        - tag_template.fields{"pii_type"}.type.enum_type.allowed_values[0].display_name = "EMAIL"
+        - tag_template.fields{"pii_type"}.type.enum_type.allowed_values[1].display_name = "SOCIAL SECURITY NUMBER"
+        - tag_template.fields{"pii_type"}.type.enum_type.allowed_values[2].display_name = "NONE"
+        attributes:
+        - parameter: parent%project
+          description: "Your Google Cloud project ID."
+          sample_argument_name: project_id
+        - parameter: parent%location
+          description: "Google Cloud region, e.g. us-central1."
+          sample_argument_name: location_id
+        - parameter: tag_template_id
+          description: "Tag Template ID."
+        - parameter: tag_template
+          description: "The Tag Template."
+      on_success:
+      - print: ["Template name: %s", $resp.name]
   - name: GetTagTemplate
     flattening:
       groups:
