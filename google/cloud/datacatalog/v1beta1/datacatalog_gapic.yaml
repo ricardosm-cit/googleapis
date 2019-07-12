@@ -203,11 +203,11 @@ interfaces:
           description: "Google Cloud region, e.g. us-central1."
           sample_argument_name: location_id
         - parameter: tag_template_id
-          description: "Tag Template ID."
+          description: "The Tag Template ID."
         - parameter: tag_template
           description: "The Tag Template."
       on_success:
-      - print: ["Template name: %s", $resp.name]
+      - print: ["Tag Template name: %s", $resp.name]
   - name: GetTagTemplate
     flattening:
       groups:
@@ -247,6 +247,32 @@ interfaces:
     field_name_patterns:
       name: tag_template
     timeout_millis: 60000
+    samples:
+      standalone:
+      - value_sets: [data_catalog_delete_tag_template]
+        region_tag: data_catalog_delete_tag_template
+    sample_value_sets:
+    - id: data_catalog_delete_tag_template
+      description: Delete Tag Template
+      parameters:
+        defaults:
+        - name%project = "[Google Cloud Project ID]"
+        - name%location = "[Google Cloud Location ID]"
+        - name%tag_template = "[Tag Template ID]"
+        - force = true
+        attributes:
+        - parameter: name%project
+          description: "Your Google Cloud project ID."
+          sample_argument_name: project_id
+        - parameter: name%location
+          description: "Google Cloud region, e.g. us-central1."
+          sample_argument_name: location_id
+        - parameter: name%tag_template
+          description: "The Tag Template ID."
+          sample_argument_name: tag_template_id
+        - parameter: force
+          description: "Confirms the deletion of any possible tags using the template."
+          sample_argument_name: force
   - name: CreateTagTemplateField
     flattening:
       groups:
