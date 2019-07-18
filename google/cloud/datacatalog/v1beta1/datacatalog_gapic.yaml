@@ -154,10 +154,10 @@ interfaces:
     timeout_millis: 60000
     samples:
       standalone:
-      - region_tag: data_catalog_get_entry
-        value_sets: [data_catalog_get_entry]
+      - region_tag: datacatalog_get_entry
+        value_sets: [datacatalog_get_entry]
     sample_value_sets:
-    - id: data_catalog_get_entry
+    - id: datacatalog_get_entry
       description: Get Entry
       parameters:
         defaults:
@@ -175,7 +175,7 @@ interfaces:
           description: "Google Cloud region, e.g. us-central1"
           sample_argument_name: location_id
         - parameter: name%entry_group
-          description: "ID of the Entry Group of this entry"
+          description: "ID of the Entry Group, e.g. @bigquery, @pubsub"
           sample_argument_name: entry_group_id
         - parameter: name%entry
           description: "ID of the Entry"
