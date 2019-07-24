@@ -7,7 +7,7 @@ test:
         name: GOOGLE_PROJECT_ID
         variable: project_id
     - call:
-        sample: data_catalog_create_tag_template
+        sample: datacatalog_create_tag_template
         params:
           project_id:
             variable: project_id
@@ -25,7 +25,7 @@ test:
     - name: Delete Tag Template
       spec:
       - call:
-          sample: data_catalog_delete_tag_template
+          sample: datacatalog_delete_tag_template
           params:
               project_id:
                 variable: project_id

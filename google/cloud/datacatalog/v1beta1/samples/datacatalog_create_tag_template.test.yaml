@@ -10,7 +10,7 @@ test:
     - name: Create Tag Template
       spec:
       - call:
-          sample: data_catalog_create_tag_template
+          sample: datacatalog_create_tag_template
           params:
             project_id:
               variable: project_id
@@ -26,7 +26,7 @@ test:
         - literal: "Tag Template name:"
     teardown:
     - call:
-        sample: data_catalog_delete_tag_template
+        sample: datacatalog_delete_tag_template
         params:
             project_id:
               variable: project_id
