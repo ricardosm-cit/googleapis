@@ -129,10 +129,10 @@ interfaces:
     timeout_millis: 60000
     samples:
       standalone:
-      - value_sets: [data_catalog_search]
-        region_tag: data_catalog_search
+      - value_sets: [datacatalog_search]
+        region_tag: datacatalog_search
     sample_value_sets:
-    - id: data_catalog_search
+    - id: datacatalog_search
       description: Search Catalog
       parameters:
         defaults:
@@ -147,7 +147,10 @@ interfaces:
           description: If true, include Google Cloud Platform (GCP) public datasets in the search results.
           sample_argument_name: include_gcp_public_datasets
         - parameter: query
-          description: Your query string.
+          description: |
+            Your query string.
+            See: https://cloud.google.com/data-catalog/docs/how-to/search-reference
+            Example: system=bigquery type=dataset
           sample_argument_name: query
       on_success:
       - print: ["Result type: %s", $resp.search_result_type]

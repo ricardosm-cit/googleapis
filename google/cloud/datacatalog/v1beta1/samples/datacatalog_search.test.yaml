@@ -10,14 +10,14 @@ test:
     - name: Search Catalog
       spec:
       - call:
-          sample: data_catalog_search
+          sample: datacatalog_search
           params:
             include_project_id:
               variable: project_id
             include_gcp_public_datasets:
               literal: "true"
             query:
-              literal: "type=dataset name:trips"
+              literal: "system=bigquery type=dataset name:trips"
       - assert_contains:
         - literal: "Result type: ENTRY"
         - literal: "Result subtype: entry.dataset"
