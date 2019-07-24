@@ -251,10 +251,10 @@ interfaces:
     timeout_millis: 60000
     samples:
       standalone:
-      - value_sets: [data_catalog_create_tag_template]
-        region_tag: data_catalog_create_tag_template
+      - value_sets: [datacatalog_create_tag_template]
+        region_tag: datacatalog_create_tag_template
     sample_value_sets:
-    - id: data_catalog_create_tag_template
+    - id: datacatalog_create_tag_template
       description: Create Tag Template
       parameters:
         defaults:
@@ -326,10 +326,10 @@ interfaces:
     timeout_millis: 60000
     samples:
       standalone:
-      - value_sets: [data_catalog_delete_tag_template]
-        region_tag: data_catalog_delete_tag_template
+      - value_sets: [datacatalog_delete_tag_template]
+        region_tag: datacatalog_delete_tag_template
     sample_value_sets:
-    - id: data_catalog_delete_tag_template
+    - id: datacatalog_delete_tag_template
       description: Delete Tag Template
       parameters:
         defaults:
