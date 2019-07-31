@@ -1,0 +1,36 @@
+test:
+  suites:
+  - name: Data Catalog v1beta1 Delete Tag Template sample tests
+    setup:
+    # Get project ID from environment variable.
+    - env:
+        name: GOOGLE_PROJECT_ID
+        variable: project_id
+    - call:
+        sample: datacatalog_create_tag_template
+        params:
+          project_id:
+            variable: project_id
+          location_id:
+            literal: "us-central1"
+    - extract_match:
+        pattern: locations/([\w-]+)
+        variable: location_id
+    - extract_match:
+        pattern: tagTemplates/([\w-]+)
+        variable: tag_template_id
+    - assert_contains:
+      - literal: "Tag Template name:"
+    cases:
+    - name: Delete Tag Template
+      spec:
+      - call:
+          sample: datacatalog_delete_tag_template
+          params:
+              project_id:
+                variable: project_id
+              location_id:
+                variable: location_id
+              tag_template_id:
+                variable: tag_template_id
+      - assert_success: []
