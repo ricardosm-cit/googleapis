@@ -1,0 +1,17 @@
+test:
+  suites:
+  - name: Data Catalog v1beta1 Get IAM Policy sample tests
+    cases:
+    - name: Get IAM Policy for a Tag Template
+      spec:
+      - call:
+          sample: data_catalog_get_iam_policy
+          params:
+            project_id:
+              literal: "uat-env-1"
+            location_id:
+              literal: "us-central1"
+            tag_template_id:
+              literal: "demo_tag_template"
+      - assert_contains:
+        - literal: "Current bindings:"
